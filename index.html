@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LPGXR71BV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2LPGXR71BV');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Reconstruct-and-Generate Diffusion Model for Detail-Preserving Image Denoising</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container">
+            <h1 class="text-center">Reconstruct-and-Generate Diffusion <br> Model for Detail-Preserving Image Denoising</h1>
+        </div>
+        <div class="container" style="max-width: 800px;">
+            <div class="row">
+                <div class="col-sm">
+                    <h4 class="text-center" style="margin: 0px;">Yujin Wang<sup>1</sup>, Lingen Li<sup>2</sup>, Tianfan Xue<sup>2</sup>, Jinwei Gu<sup>2</sup> </h4>
+                    <h5 class="text-center"><sup>1</sup>Shanghai Artificial Intelligence Laboratory, <sup>2</sup>The Chinese University of Hong Kong</h5>
+                    <!-- <h6 class="text-center">(* denotes equal contribution)</h6> -->
+                </div>
+            </div>
+        </div>
+        <div class="buttons" style="margin-bottom: 8px;"><a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2309.10714">Paper</a><a class="btn btn-primary" role="button" href="coming soon">Code</a></div>
+        <div class="container" style="max-width: 650px;">
+            <div class="row">
+                <div class="col-md-12 text-center"><img src="assets/img/header_small.png" style="width: 100%;margin-bottom: 8px;" alt="Samples from denoising diffusion probabilistic models trained on CelebA-HQ, LSUN Bedrooms, LSUN church and LSUN cat datasets at 256x256 resolution"><em>Selected generated images from our 256x256 class-conditional ImageNet model.</em></div>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Summary</h2>
+                <ul>
+                    <li>We proposed the Reconstruct-and-Generate Diffusion Model , which alleviates the fidelity problem of generative denoising methods and conveniently achieves better perceptual quality, leading to a better trade-off between perception and distortion.</li>
+                    <li>We proposed an adaptive step controller to control the generation intensity of the RnG based on the observation that the increasing step in diffusion may lead to artifact, making the proposed RnG flexible to different inputs without any expensive retraining or fine-tuning on the diffusion model itself and further achieving higher perceptual quality and less distortion.</li>
+                    <li>Our approach enables us to expedite the inference of diffusion-based models by utilizing initial predictions and a step controller to reduce the number of diffusion inference steps.</li>
+                </ul>
+                <img class="img-fluid" src="assets/img/Framework.png">
+                <p></p>
+                <em class="text-center" style="display: block;">The proposed RnG consists of two key components: the reconstructive module, which utilizes a DNN-based denoiser, and the generative module, which generates residual details in inverse diffusion.
+                    To further enhance perceptual performance, an additional step controller takes the noisy image as input and predicts the optimal number of inverse diffusion steps. 
+                </em>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p>Image denoising is a fundamental and challenging task in the field of computer vision. Most supervised denoising methods learn to reconstruct clean images from noisy inputs, which have intrinsic spectral bias and tend to produce over- smoothed and blurry images. Recently, researchers have explored diffusion models to generate high-frequency details in image restoration tasks, but these models do not guarantee that the generated texture aligns with real images, leading to undesirable artifacts. To address the trade-off between visual appeal and fidelity of high-frequency details in denoising tasks, we propose a novel approach called the Reconstruct-and-Generate Diffusion Model (RnG). Our method leverages a reconstructive denoising network to recover the majority of the underlying clean signal, which serves as the initial estimation for subsequent steps to maintain fidelity. Additionally, it employs a diffusion algorithm to generate residual high-frequency details, thereby enhancing visual quality. We further introduce a two-stage training scheme to ensure effective collaboration between the reconstructive and generative modules of RnG. To reduce undesirable texture introduced by the diffusion model, we also propose an adaptive step controller that regulates the number of inverse steps applied by the diffusion model, allowing control over the level of high- frequency details added to each patch as well as saving the inference computational cost. Through our proposed RnG, we achieve a better balance between perception and distortion. We conducted extensive experiments on both synthetic and real denoising datasets, validating the superiority of the proposed approach.</p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Samples</h2>
+                <p>Visual comparison on the DIV2K dataset.<br></p>
+                <img class="img-fluid" src="assets/img/ExpMainFig-Compact-Compressed.png" style="margin-bottom: 8px;">
+                <!-- <img class="img-fluid" src="assets/img/more_samples_2.png" style="margin-bottom: 8px;"> -->
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Results</h2>
+                <p>We conducted extensive experiments on both synthetic and real denoising datasets, our model achieves the best LPIPS perceptual metric while maintaining comparable PSNR.
+                Furthermore, our approach outperforms diffusion-based techniques by requiring only 76/16 averaged inference steps to achieve the best results.<br></p>
+                <img class="img-fluid" src="assets/img/SIDD-result.png" style="margin-top: 16px; margin-bottom: 8px;">
+                <img class="img-fluid" src="assets/img/DIV2K-result.png" style="margin-top: 16px; margin-bottom: 8px;">
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <div class="container" style="max-width: 650px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Citation</h2>
+                <code>@article{wang2023reconstruct, <br>&nbsp; 
+                    title={Reconstruct-and-Generate Diffusion Model for Detail-Preserving Image Denoising},<br>&nbsp; 
+                    author={Yujin Wang and Lingen Li and Tianfan Xue and Jinwei Gu},<br>&nbsp; 
+                    journal={arXiv preprint arXiv:2309.10714},<br>&nbsp; 
+                    year={2023}<br>}<br>
+                </code>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 650px;">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
